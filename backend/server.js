@@ -100,7 +100,7 @@ db.serialize(() => {
 // Routes
 app.post('/api/register', (req, res) => {
     const { userName, email, password, phone } = req.body;
-    const sql = `INSERT INTO User (UserName, Email, Password, Phone) VALUES (?, ?, ?)`;
+    const sql = `INSERT INTO User (UserName, Email, Password, Phone) VALUES (?, ?, ?, ?)`;
     
     db.run(sql, [userName, email, password, phone], function(err) {
         if (err) {
