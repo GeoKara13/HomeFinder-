@@ -7,7 +7,7 @@ const itemsPerPage = 6;
 
 async function fetchProperties() {
     try {
-        const response = await fetch('http://localhost:3000/api/properties');
+        const response = await fetch('https://homefinder-backend-5aho.onrender.com/api/properties');
         properties = await response.json();
         
         if (properties.length > 0) {
