@@ -4,10 +4,15 @@ const bodyParser = require('body-parser');
 const sqlite3 = require('sqlite3').verbose();
 
 const app = express();
-const PORT = 3000;
 
-// Middleware
-app.use(cors());
+const PORT = process.env.PORT || 3000;
+
+
+app.use(cors({
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(bodyParser.json());
 
 
@@ -15,14 +20,12 @@ const db = new sqlite3.Database('./homefinder.db', (err) => {
     if (err) console.error("Database connection error:", err.message);
     else {
         console.log("Connected to SQLite database (homefinder.db).");
-        
         db.run("PRAGMA foreign_keys = ON");
     }
 });
 
-
 db.serialize(() => {
-    // 1. Create User Table
+    
     db.run(`CREATE TABLE IF NOT EXISTS User (
         UserID INTEGER PRIMARY KEY AUTOINCREMENT,
         UserName VARCHAR(255) NOT NULL,
@@ -61,7 +64,6 @@ db.serialize(() => {
     )`);
 
     
-    
     db.get("SELECT COUNT(*) as count FROM User", (err, row) => {
         if (row && row.count === 0) {
             console.log("Adding default admin user...");
@@ -95,16 +97,13 @@ db.serialize(() => {
     });
 });
 
-
+// Routes
 app.post('/api/register', (req, res) => {
     const { userName, email, password, phone } = req.body;
-    console.log(`Registration attempt: ${userName} (${email})`);
-
-    const sql = `INSERT INTO User (UserName, Email, Password, Phone) VALUES (?, ?, ?, ?)`;
+    const sql = `INSERT INTO User (UserName, Email, Password, Phone) VALUES (?, ?, ?)`;
     
     db.run(sql, [userName, email, password, phone], function(err) {
         if (err) {
-            // Handle duplicate email/phone error
             if (err.message.includes("UNIQUE")) {
                 return res.status(400).json({ error: "Email or Phone already exists!" });
             }
@@ -113,7 +112,6 @@ app.post('/api/register', (req, res) => {
         res.json({ message: "User registered successfully!", userID: this.lastID });
     });
 });
-
 
 app.post('/api/login', (req, res) => {
     const { email, password } = req.body;
@@ -129,7 +127,6 @@ app.post('/api/login', (req, res) => {
     });
 });
 
-
 app.get('/api/properties', (req, res) => {
     db.all("SELECT * FROM Property", [], (err, rows) => {
         if (err) return res.status(400).json({ error: err.message });
@@ -137,22 +134,18 @@ app.get('/api/properties', (req, res) => {
     });
 });
 
-
 app.post('/api/appointments', (req, res) => {
     const { clientID, propertyID, date, time } = req.body;
-    
-    // Use clientID from frontend (localStorage) or default to 1 for guest testing
     const sql = `INSERT INTO Appointment (ClientID, PropertyID, AppDate, AppTime, Status) VALUES (?, ?, ?, ?, ?)`;
     const params = [clientID || 1, propertyID || 1, date, time, 'Pending'];
 
     db.run(sql, params, function(err) {
         if (err) return res.status(400).json({ error: err.message });
-        console.log(`New Appointment saved to DB (ID: ${this.lastID})`);
-        res.json({ message: "Appointment booked and saved to database!", id: this.lastID });
+        res.json({ message: "Appointment booked and saved!", id: this.lastID });
     });
 });
 
 
 app.listen(PORT, () => {
-    console.log(`Server is flying at http://localhost:${PORT}`);
+    console.log(`Server is running on port ${PORT}`);
 });
