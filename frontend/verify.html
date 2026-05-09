@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomeFinder - 2FA Verification</title>
+    <link rel="stylesheet" href="register.css">
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo-container">
+            <img src="image1.png" alt="HomeFinder Logo" class="logo-image">
+            <span class="logo-text">HomeFinder</span>
+        </a>
+    </header>
+
+    <main>
+        <section class="auth-section">
+            <h2>Security Verification</h2>
+            <p>We've sent a 6-digit code to your email. Please enter it below.</p>
+            
+            <form id="verifyForm">
+                <div class="form-group">
+                    <label for="token">Verification Code:</label>
+                    <input type="text" id="token" name="token" required placeholder="Enter 6-digit code" maxlength="6" pattern="\d{6}" title="Please enter exactly 6 digits">
+                </div>
+
+                <p id="timerText" style="color: var(--error-color); font-weight: bold; margin-bottom: 15px;">
+                    Time remaining: <span id="countdown">30</span>s
+                </p>
+
+                <button type="submit" id="verifyBtn">Verify & Login</button>
+            </form>
+
+            <p style="margin-top: 15px;">Didn't receive the code? <a href="#" id="resendLink">Resend</a></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 HomeFinder Portal - Computer Science Project</p>
+    </footer>
+
+    <script src="verify.js"></script>
+</body>
+</html>

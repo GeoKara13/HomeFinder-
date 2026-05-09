@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomeFinder - Register</title>
+    <link rel="stylesheet" href="register.css">
+</head>
+<body>
+    <header>
+        <a href="mainpage.html" class="logo-container" style="text-decoration: none; color: inherit;">
+            <img src="image1.png" alt="HomeFinder Logo" class="logo-image">
+            <span class="logo-text">HomeFinder</span>
+        </a>
+        
+        <nav>
+            <a href="login.html">Login</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="auth-section">
+            <h2>Create an Account</h2>
+            <p>Please fill in the details below to register.</p>
+            
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="regName">Full Name:</label>
+                    <input type="text" id="regName" name="regName" required placeholder="John Doe">
+                </div>
+
+                <div class="form-group">
+                    <label for="regEmail">Email Address:</label>
+                    <input type="email" id="regEmail" name="email" required placeholder="name@example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="regPhone">Phone Number:</label>
+                    <input type="tel" id="regPhone" name="phone" placeholder="69XXXXXXXX">
+                </div>
+
+                <div class="form-group">
+                    <label for="regPassword">Password:</label>
+                    <input type="password" id="regPassword" name="password" required placeholder="Enter a secure password">
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password:</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Repeat your password">
+                </div>
+
+                <button type="submit">Register</button>
+            </form>
+
+            <p style="margin-top: 15px;">Already have an account? <a href="login.html">Login here</a>.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 HomeFinder Athens | Powered by HomeFinder Europe 2010</p>
+    </footer>
+
+    <script src="register.js"></script>
+</body>
+</html>

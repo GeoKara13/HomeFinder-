@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomeFinder - Login</title>
+    <link rel="stylesheet" href="register.css">
+</head>
+<body>
+    <header>
+        <a href="mainpage.html" class="logo-container" style="text-decoration: none; color: inherit;">
+            <img src="image1.png" alt="HomeFinder Logo" class="logo-image">
+            <span class="logo-text" style="font-weight: bold; font-size: 1.2rem; margin-left: 10px;">HomeFinder</span>
+        </a>
+        
+        <nav>
+            <a href="register.html">Register</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="auth-section">
+            <h2>Welcome Back</h2>
+            <p>Please enter your credentials to login.</p>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email Address:</label>
+                    <input type="email" id="email" name="email" required placeholder="name@example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required placeholder="Enter your password">
+                </div>
+
+                <button type="submit">Login</button>
+            </form>
+
+            <p style="margin-top: 15px;">Don't have an account? <a href="register.html">Register here</a>.</p>
+        </section>
+    </main>
+
+    <footer style="text-align: center; margin-top: 50px; padding: 20px; color: #666;">
+        <p>&copy; 2026 HomeFinder Portal - Computer Science Project</p>
+    </footer>
+
+    <script src="login.js"></script>
+</body>
+</html>

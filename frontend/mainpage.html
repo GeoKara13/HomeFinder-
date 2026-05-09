@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomeFinder Athens</title>
+    <link rel="stylesheet" href="mainpage.css">
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <img src="image1.png" alt="Logo" class="logo-image">
+            <span class="partner-tag">Official Partner:<br>HomeFinder Europe</span>
+        </div>
+        
+        <div class="header-center">
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search area (e.g. Kypseli)...">
+                <button type="button">🔍</button>
+            </div>
+            <div class="saved-icon" onclick="showFavorites()" style="cursor: pointer;">
+                <img src="image3.png" alt="Saved" class="heart-icon">
+                <span>Saved</span>
+            </div>
+        </div>
+
+        <div class="header-right">
+            <a href="login.html" class="auth-link">Log in/Sign in</a>
+            <img src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png" alt="User" class="user-icon">
+        </div>
+    </header>
+
+    <div class="layout-container">
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3>Categories</h3>
+                <ul>
+                    <li><a href="#" onclick="showAll()">All Listings</a></li>
+                    <li><a href="#" onclick="filterCategory('Rent')">For Rent</a></li>
+                    <li><a href="#" onclick="filterCategory('Sale')">For Sale</a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-section calendar-widget">
+                <div class="cal-header">
+                    <span id="prevMonth" class="cal-btn" onclick="changeMonth(-1)">&lt;</span>
+                    <span id="monthDisplay">May 2026</span>
+                    <span id="nextMonth" class="cal-btn" onclick="changeMonth(1)">&gt;</span>
+                </div>
+                <div id="calendarGrid" class="cal-grid">
+                    </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div id="propertyGrid" class="property-grid">
+                </div>
+
+            <div class="pagination">
+                <button onclick="renderPage(1)">1</button>
+                <button onclick="renderPage(2)">2</button>
+            </div>
+        </main>
+    </div>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>HomeFinder</h4>
+                <p>Supportive housing for vulnerable social groups.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>Email: info@homeRental.gr</p>
+                <p>Tel: +30 210 1234567</p>
+            </div>
+            <div class="footer-section">
+                <h4>Partner</h4>
+                <p>HomeRental Europe</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 HomeFinder Athens | Powered by HomeFinder Europe 2010
+        </div>
+    </footer>
+
+    <div id="appointmentModal" class="modal">
+        <div class="modal-content">
+            <div id="modalData"></div>
+        </div>
+    </div>
+
+    <script src="mainpage.js"></script>
+</body>
+</html>
